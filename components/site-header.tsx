@@ -50,8 +50,8 @@ export function SiteHeader() {
       <div className="shell header-inner">
         <Logo />
         <nav className={`main-nav${open ? ' is-open' : ''}`} aria-label="Hauptnavigation">
-          <a href="/#warum" onClick={() => setOpen(false)}>Warum PipeBot</a>
           <a href="/#ausprobieren" onClick={() => setOpen(false)}>Ausprobieren</a>
+          <a href="/#warum" onClick={() => setOpen(false)}>So funktioniert es</a>
           <a href="/#kontakt" onClick={() => setOpen(false)}>Kontakt</a>
         </nav>
         <div className="header-actions">

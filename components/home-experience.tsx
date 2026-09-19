@@ -15,13 +15,31 @@ function Reveal({ children, className = '' }: { children: React.ReactNode; class
       className={className}
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-15%' }}
-      transition={{ duration: 0.75, ease }}
+      viewport={{ once: true, margin: '-12%' }}
+      transition={{ duration: 0.7, ease }}
     >
       {children}
     </motion.div>
   );
 }
+
+const steps = [
+  {
+    number: '01',
+    title: 'Deine Inhalte.',
+    text: 'Wir machen aus deiner Website und deinen Unterlagen eine klare Wissensbasis.',
+  },
+  {
+    number: '02',
+    title: 'Klare Antworten.',
+    text: 'PipeBot beantwortet konkrete Fragen direkt auf deiner Website.',
+  },
+  {
+    number: '03',
+    title: 'Der richtige Kontakt.',
+    text: 'Wenn es persönlich wird, führt PipeBot das Gespräch zu dir weiter.',
+  },
+];
 
 export function HomeExperience() {
   const reduceMotion = useReducedMotion();
@@ -40,9 +58,9 @@ export function HomeExperience() {
           >
             <div className="hero-copy">
               <h1>Deine Website<br />sollte antworten.</h1>
-              <p>PipeBot kennt dein Angebot und beantwortet Fragen, bevor sie liegen bleiben.</p>
+              <p>PipeBot beantwortet Fragen zu deinem Angebot – direkt dort, wo sie entstehen.</p>
               <div className="minimal-actions">
-                <a className="text-link primary-link" href="#ausprobieren">PipeBot ausprobieren <span>↓</span></a>
+                <a className="text-link primary-link" href="#ausprobieren">Selbst ausprobieren <span>↓</span></a>
                 <a className="text-link" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Anfrage">Schreib uns <span>↗</span></a>
               </div>
             </div>
@@ -54,48 +72,12 @@ export function HomeExperience() {
           </motion.div>
         </section>
 
-        <section className="story" id="warum">
-          <div className="shell story-layout">
-            <Reveal className="story-inner">
-              <h2>Du erklärst dein Angebot einmal.</h2>
-              <p>PipeBot macht daraus klare Antworten.</p>
-            </Reveal>
-            <div className="knowledge-visual" aria-hidden="true">
-              <span>Website</span><i /><strong>PipeBot</strong><i /><span>Antwort</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="story story-soft">
-          <div className="shell story-layout story-layout-reverse">
-            <Reveal className="story-inner">
-              <h2>Deine Besucher fragen.</h2>
-              <p>PipeBot antwortet direkt.</p>
-            </Reveal>
-            <div className="dialogue-visual" aria-hidden="true">
-              <span className="dialogue-question">Kann ich direkt starten?</span>
-              <span className="dialogue-answer">Ja. So funktioniert es.</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="story">
-          <div className="shell story-layout">
-            <Reveal className="story-inner">
-              <h2>Wenn es persönlich wird, übernimmst du.</h2>
-              <p>Ohne Umwege.</p>
-            </Reveal>
-            <div className="handoff-visual" aria-hidden="true">
-              <span>PipeBot</span><i><b /></i><span>Du</span>
-            </div>
-          </div>
-        </section>
-
         <section className="try-section" id="ausprobieren">
           <div className="shell try-layout">
             <Reveal className="try-copy">
-              <h2>Frag PipeBot.</h2>
-              <p>Direkt hier.</p>
+              <span className="section-label">PipeBot ausprobieren</span>
+              <h2>Frag einfach.</h2>
+              <p>Du bekommst sofort eine Antwort.</p>
             </Reveal>
             <div className="chat-stage">
               <PipeBotChat />
@@ -103,9 +85,33 @@ export function HomeExperience() {
           </div>
         </section>
 
+        <section className="how-section" id="warum">
+          <div className="shell how-head">
+            <Reveal>
+              <span className="section-label">So funktioniert es</span>
+              <h2>So arbeitet PipeBot für dich.</h2>
+            </Reveal>
+          </div>
+          <div className="shell process-list">
+            {steps.map((step, index) => (
+              <Reveal className="process-item" key={step.number}>
+                <span className="process-number">{step.number}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
+                {index < steps.length - 1 && <span className="process-arrow" aria-hidden="true">→</span>}
+              </Reveal>
+            ))}
+          </div>
+          <div className="shell process-visual" aria-hidden="true">
+            <span>Inhalt</span><i><b /></i><strong>PipeBot</strong><i><b /></i><span>Gespräch</span>
+          </div>
+        </section>
+
         <section className="minimal-contact" id="kontakt">
           <Reveal className="shell contact-inner">
-            <h2>Was könnte PipeBot für dich beantworten?</h2>
+            <h2>Was soll PipeBot für dich beantworten?</h2>
             <a className="text-link primary-link" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Demo">Lass es uns herausfinden <span>↗</span></a>
             <p>PipeBot ist ein Produkt von <a href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Pipeline AI Solutions</a>.</p>
           </Reveal>

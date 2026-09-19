@@ -83,7 +83,7 @@ export function PipeBotChat() {
   }
 
   return (
-    <motion.div className="live-chat" initial={{ opacity: 0, y: 26, rotateX: 4 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ duration: .8, delay: .2, ease: [0.22, 1, 0.36, 1] }}>
+    <div className="live-chat">
       <div className="live-chat-bar">
         <div className="chat-product"><div><strong>PipeBot</strong><small>FÜR DEINE WEBSITE</small></div></div>
         <div className="chat-model"><i /> BEREIT</div>
@@ -130,6 +130,6 @@ export function PipeBotChat() {
         </button>
       </form>
       <p className="chat-disclosure">Automatische Antwort. Prüfe wichtige Angaben.</p>
-    </motion.div>
+    </div>
   );
 }

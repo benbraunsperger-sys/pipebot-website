@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import { FloatingChat } from '@/components/floating-chat';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -41,7 +42,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>{children}</body>
+      <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
+        {children}
+        <FloatingChat />
+      </body>
     </html>
   );
 }
