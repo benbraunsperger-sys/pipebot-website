@@ -25,11 +25,11 @@
   --accent-soft: #dbe6ef;
   --accent-contrast: #ffffff;
   --header: rgba(247, 247, 244, .88);
-  --footer-background: #11151d;
-  --footer-foreground: #f4f4f1;
-  --footer-muted: #aeb3ba;
-  --footer-subtle: #7f8690;
-  --footer-line: #2e333a;
+  --footer-background: #ffffff;
+  --footer-foreground: #11151d;
+  --footer-muted: #686e77;
+  --footer-subtle: #7b818a;
+  --footer-line: #dddfdb;
 }
 
 :root[data-theme='dark'] {
