@@ -38,34 +38,57 @@ export function HomeExperience() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease }}
           >
-            <h1>Deine Website<br />sollte antworten.</h1>
-            <p>PipeBot kennt dein Angebot und beantwortet Fragen, bevor sie liegen bleiben.</p>
-            <div className="minimal-actions">
-              <a className="text-link primary-link" href="#ausprobieren">PipeBot ausprobieren <span>↓</span></a>
-              <a className="text-link" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Anfrage">Schreib uns <span>↗</span></a>
+            <div className="hero-copy">
+              <h1>Deine Website<br />sollte antworten.</h1>
+              <p>PipeBot kennt dein Angebot und beantwortet Fragen, bevor sie liegen bleiben.</p>
+              <div className="minimal-actions">
+                <a className="text-link primary-link" href="#ausprobieren">PipeBot ausprobieren <span>↓</span></a>
+                <a className="text-link" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Anfrage">Schreib uns <span>↗</span></a>
+              </div>
+            </div>
+            <div className="hero-visual" aria-hidden="true">
+              <span className="visual-question">?</span>
+              <span className="visual-path"><i /><i /><i /></span>
+              <span className="visual-answer">Antwort.</span>
             </div>
           </motion.div>
         </section>
 
         <section className="story" id="warum">
-          <Reveal className="shell story-inner">
-            <h2>Du erklärst dein Angebot einmal.</h2>
-            <p>PipeBot macht daraus klare Antworten.</p>
-          </Reveal>
+          <div className="shell story-layout">
+            <Reveal className="story-inner">
+              <h2>Du erklärst dein Angebot einmal.</h2>
+              <p>PipeBot macht daraus klare Antworten.</p>
+            </Reveal>
+            <div className="knowledge-visual" aria-hidden="true">
+              <span>Website</span><i /><strong>PipeBot</strong><i /><span>Antwort</span>
+            </div>
+          </div>
         </section>
 
         <section className="story story-soft">
-          <Reveal className="shell story-inner">
-            <h2>Deine Besucher fragen.</h2>
-            <p>PipeBot antwortet direkt.</p>
-          </Reveal>
+          <div className="shell story-layout story-layout-reverse">
+            <Reveal className="story-inner">
+              <h2>Deine Besucher fragen.</h2>
+              <p>PipeBot antwortet direkt.</p>
+            </Reveal>
+            <div className="dialogue-visual" aria-hidden="true">
+              <span className="dialogue-question">Kann ich direkt starten?</span>
+              <span className="dialogue-answer">Ja. So funktioniert es.</span>
+            </div>
+          </div>
         </section>
 
         <section className="story">
-          <Reveal className="shell story-inner">
-            <h2>Wenn es persönlich wird, übernimmst du.</h2>
-            <p>Ohne Umwege.</p>
-          </Reveal>
+          <div className="shell story-layout">
+            <Reveal className="story-inner">
+              <h2>Wenn es persönlich wird, übernimmst du.</h2>
+              <p>Ohne Umwege.</p>
+            </Reveal>
+            <div className="handoff-visual" aria-hidden="true">
+              <span>PipeBot</span><i><b /></i><span>Du</span>
+            </div>
+          </div>
         </section>
 
         <section className="try-section" id="ausprobieren">
