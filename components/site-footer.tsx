@@ -12,9 +12,8 @@ export function SiteFooter() {
         <div className="footer-links">
           <div>
             <strong>PipeBot</strong>
-            <a href="/#produkt">Produkt</a>
-            <a href="/#vorteile">Vorteile</a>
-            <a href="/#faq">FAQ</a>
+            <a href="/#warum">Warum PipeBot</a>
+            <a href="/#ausprobieren">Ausprobieren</a>
           </div>
           <div>
             <strong>Unternehmen</strong>
@@ -30,7 +29,7 @@ export function SiteFooter() {
       </div>
       <div className="shell footer-bottom">
         <span>© 2026 Pipeline AI Solutions UG (haftungsbeschränkt)</span>
-        <span>PipeBot · KI-Chatbot für Websites</span>
+        <span>PipeBot · ein Produkt von Pipeline AI Solutions</span>
       </div>
     </footer>
   );

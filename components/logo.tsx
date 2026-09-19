@@ -16,7 +16,6 @@ export function Logo({ href = '/', compact = false }: LogoProps) {
       </span>
       <span className="brand-copy">
         <strong>PipeBot</strong>
-        {!compact && <small>KI-Chatbot von Pipeline AI Solutions</small>}
       </span>
     </Link>
   );

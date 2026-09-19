@@ -17,10 +17,10 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://pipebot.at'),
   title: {
-    default: 'PipeBot – KI-Chatbot von Pipeline AI Solutions',
+    default: 'PipeBot – Deine Website antwortet',
     template: '%s | PipeBot',
   },
-  description: 'PipeBot ist der KI-Chatbot von Pipeline AI Solutions. Er beantwortet Kundenfragen direkt auf Ihrer Website – rund um die Uhr und auf Basis Ihres Unternehmenswissens.',
+  description: 'PipeBot beantwortet Fragen direkt auf deiner Website – auf Basis deines Unternehmenswissens und entwickelt von Pipeline AI Solutions.',
   alternates: { canonical: '/' },
   icons: { icon: '/favicon.svg' },
   openGraph: {
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     locale: 'de_AT',
     url: 'https://pipebot.at',
     siteName: 'PipeBot',
-    title: 'PipeBot – KI-Chatbot von Pipeline AI Solutions',
-    description: 'Der KI-Chatbot für Websites. Entwickelt und angeboten von Pipeline AI Solutions.',
+    title: 'PipeBot – Deine Website antwortet',
+    description: 'Deine Website antwortet. Mit PipeBot von Pipeline AI Solutions.',
   },
   twitter: {
     card: 'summary',
-    title: 'PipeBot – KI-Chatbot von Pipeline AI Solutions',
-    description: 'Der KI-Chatbot für Websites. Entwickelt und angeboten von Pipeline AI Solutions.',
+    title: 'PipeBot – Deine Website antwortet',
+    description: 'Deine Website antwortet. Mit PipeBot von Pipeline AI Solutions.',
   },
 };
 

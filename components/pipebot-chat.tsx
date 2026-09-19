@@ -15,13 +15,13 @@ const initialMessages: Message[] = [
   {
     id: 'welcome',
     role: 'assistant',
-    content: 'Hallo, ich bin **PipeBot** – der KI-Assistent von Pipeline AI Solutions. Was möchten Sie über das Produkt wissen?',
+    content: 'Hallo, ich bin **PipeBot**. Was möchtest du wissen?',
   },
 ];
 
 const suggestions = [
-  'Was kann PipeBot?',
-  'Wie läuft die Einrichtung ab?',
+  'Was kannst du?',
+  'Wie starte ich?',
   'Wie bekomme ich eine Demo?',
 ];
 
@@ -69,7 +69,7 @@ export function PipeBotChat() {
         {
           id: crypto.randomUUID(),
           role: 'assistant',
-          content: error instanceof Error ? error.message : 'PipeBot ist gerade nicht erreichbar. Bitte versuchen Sie es erneut.',
+          content: error instanceof Error ? error.message : 'PipeBot ist gerade nicht erreichbar. Versuch es bitte noch einmal.',
         },
       ]);
     } finally {
@@ -85,8 +85,8 @@ export function PipeBotChat() {
   return (
     <motion.div className="live-chat" initial={{ opacity: 0, y: 26, rotateX: 4 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ duration: .8, delay: .2, ease: [0.22, 1, 0.36, 1] }}>
       <div className="live-chat-bar">
-        <div className="chat-product"><span className="chat-product-mark">P</span><div><strong>PipeBot</strong><small>KI-ASSISTENT</small></div></div>
-        <div className="chat-model"><i /> GPT-5.6 SOL</div>
+        <div className="chat-product"><span className="chat-product-mark">P</span><div><strong>PipeBot</strong><small>FÜR DEINE WEBSITE</small></div></div>
+        <div className="chat-model"><i /> BEREIT</div>
       </div>
 
       <div className="chat-messages" ref={scrollRef} aria-live="polite">
@@ -129,7 +129,7 @@ export function PipeBotChat() {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4.7 14-2.8-5.5L5 12Z" /><path d="m11.5 13.5 3.3-3.3" /></svg>
         </button>
       </form>
-      <p className="chat-disclosure">KI kann Fehler machen. Wichtige Angaben bitte prüfen.</p>
+      <p className="chat-disclosure">Automatische Antwort. Prüfe wichtige Angaben.</p>
     </motion.div>
   );
 }
