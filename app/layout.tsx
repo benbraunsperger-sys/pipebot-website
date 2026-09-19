@@ -15,8 +15,11 @@ const jetBrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://pipebot.at'),
+  ...(googleSiteVerification ? { verification: { google: googleSiteVerification } } : {}),
   title: {
     default: 'PipeBot – Deine Website antwortet',
     template: '%s | PipeBot',
