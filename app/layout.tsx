@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: 'PipeBot – Deine Website antwortet',
     template: '%s | PipeBot',
   },
-  description: 'PipeBot beantwortet Fragen direkt auf deiner Website – auf Basis deines Unternehmenswissens und entwickelt von Pipeline AI Solutions.',
+  description: 'PipeBot beantwortet Fragen direkt auf deiner Website. Ein Produkt von Pipeline AI Solutions.',
   alternates: { canonical: '/' },
   icons: { icon: '/favicon.svg' },
   openGraph: {

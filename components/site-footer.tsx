@@ -8,6 +8,7 @@ export function SiteFooter() {
         <div className="footer-brand">
           <Logo compact />
           <p>PipeBot ist ein Produkt von Pipeline AI Solutions UG (haftungsbeschränkt).</p>
+          <a className="footer-company-link" href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Zur Pipeline-Hauptseite <span>↗</span></a>
         </div>
         <div className="footer-links">
           <div>
@@ -17,7 +18,7 @@ export function SiteFooter() {
           </div>
           <div>
             <strong>Unternehmen</strong>
-            <a href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Pipeline AI Solutions</a>
+            <a href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Hauptseite öffnen ↗</a>
             <a href="mailto:office@pipeline-solutions.at">office@pipeline-solutions.at</a>
           </div>
           <div>

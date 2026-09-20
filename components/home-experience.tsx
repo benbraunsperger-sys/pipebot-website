@@ -57,10 +57,16 @@ export function HomeExperience() {
             transition={{ duration: 0.9, ease }}
           >
             <div className="hero-copy">
+              <div className="hero-kicker">
+                <span className="hero-kicker-mark" aria-hidden="true">P</span>
+                <span>Ein Produkt von</span>
+                <a href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Pipeline AI Solutions <span>↗</span></a>
+              </div>
               <h1>Deine Website<br />sollte antworten.</h1>
               <p>PipeBot beantwortet Fragen zu deinem Angebot – direkt dort, wo sie entstehen.</p>
               <div className="minimal-actions">
                 <a className="text-link primary-link" href="#ausprobieren">Selbst ausprobieren <span>↓</span></a>
+                <a className="text-link" href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Zur Pipeline-Hauptseite <span>↗</span></a>
                 <a className="text-link" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Anfrage">Schreib uns <span>↗</span></a>
               </div>
             </div>
@@ -82,6 +88,18 @@ export function HomeExperience() {
             <div className="chat-stage">
               <PipeBotChat />
             </div>
+          </div>
+        </section>
+
+        <section className="pipeline-bridge">
+          <div className="shell pipeline-bridge-inner">
+            <div className="pipeline-bridge-mark" aria-hidden="true">P</div>
+            <div className="pipeline-bridge-copy">
+              <span className="section-label">Das Unternehmen dahinter</span>
+              <h2>Pipeline AI Solutions.</h2>
+              <p>PipeBot ist ein Produkt von Pipeline AI Solutions. Auf der Hauptseite findest du Websites, digitale Systeme und weitere Lösungen aus einer Hand.</p>
+            </div>
+            <a className="text-link primary-link" href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Pipeline-Hauptseite öffnen <span>↗</span></a>
           </div>
         </section>
 
@@ -113,7 +131,7 @@ export function HomeExperience() {
           <Reveal className="shell contact-inner">
             <h2>Was soll PipeBot für dich beantworten?</h2>
             <a className="text-link primary-link" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Demo">Lass es uns herausfinden <span>↗</span></a>
-            <p>PipeBot ist ein Produkt von <a href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Pipeline AI Solutions</a>.</p>
+            <p>Mehr über das Unternehmen, Websites und digitale Systeme: <a href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">pipeline-solutions.at ↗</a></p>
           </Reveal>
         </section>
       </main>
