@@ -30,7 +30,14 @@ Der API-Schlüssel darf ausschließlich serverseitig als Umgebungsvariable gespe
 npm run build
 ```
 
-Das Projekt nutzt eine dynamische Next.js-Route unter `/api/chat`. Für Netlify ist das offizielle Next.js-Plugin konfiguriert. Die drei `NEOKENS_*`-Variablen müssen vor dem Deployment in Netlify hinterlegt werden.
+Das Projekt nutzt eine dynamische Next.js-Route unter `/api/chat`. Die drei `NEOKENS_*`-Variablen müssen in der jeweiligen Server-Umgebung hinterlegt werden.
+
+## Deployment-Vorgabe
+
+Dieses Projekt wird ausschließlich über GitHub gepflegt und gepusht:
+`https://github.com/benbraunsperger-sys/pipebot-website`
+
+Kein Netlify-Deployment und keine Netlify-Verknüpfung verwenden.
 
 Für die Domaintrennung, Weiterleitungen und den Go-live gibt es eine konkrete Arbeitsliste unter [docs/PIPEBOT-MIGRATION.md](docs/PIPEBOT-MIGRATION.md).
 
@@ -40,4 +47,4 @@ Für die Domaintrennung, Weiterleitungen und den Go-live gibt es eine konkrete A
 - Firmenbuchnummer
 - USt-ID
 - Datenschutzangaben und Auftragsverarbeitung prüfen, sobald Hosting und KI-Dienste final feststehen
-- optional: Google-Search-Console-Token als `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` in Netlify setzen
+- optional: Google-Search-Console-Token als `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` setzen
