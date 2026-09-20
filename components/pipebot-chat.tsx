@@ -85,7 +85,7 @@ export function PipeBotChat() {
   return (
     <div className="live-chat">
       <div className="live-chat-bar">
-        <div className="chat-product"><div><strong>PipeBot</strong><small>FÜR DEINE WEBSITE</small></div></div>
+        <div className="chat-product"><img src="/pipebot-logo.png" width="30" height="26" alt="" /><div><strong>PipeBot</strong><small>FÜR DEINE WEBSITE</small></div></div>
         <div className="chat-model"><i /> BEREIT</div>
       </div>
 

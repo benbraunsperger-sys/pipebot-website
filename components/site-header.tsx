@@ -52,15 +52,13 @@ export function SiteHeader() {
         <nav className={`main-nav${open ? ' is-open' : ''}`} aria-label="Hauptnavigation">
           <a href="/#ausprobieren" onClick={() => setOpen(false)}>Ausprobieren</a>
           <a href="/#warum" onClick={() => setOpen(false)}>So funktioniert es</a>
-          <a className="nav-main-site" href="https://pipeline-solutions.at" target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Pipeline-Hauptseite <span>↗</span></a>
           <a href="/#kontakt" onClick={() => setOpen(false)}>Kontakt</a>
         </nav>
         <div className="header-actions">
           <button className="icon-button" type="button" onClick={toggleTheme} aria-label={theme === 'light' ? 'Dunkles Farbschema aktivieren' : 'Helles Farbschema aktivieren'}>
             <ThemeIcon theme={theme} />
           </button>
-          <a className="header-main-site" href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Pipeline besuchen <span>↗</span></a>
-          <a className="header-mail" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Anfrage">E-Mail</a>
+          <a className="header-mail" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Anfrage">Kontakt</a>
           <button className="menu-button" type="button" aria-label={open ? 'Menü schließen' : 'Menü öffnen'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
             <span /><span />
           </button>
