@@ -30,9 +30,7 @@ export function SiteHeader() {
     const savedTheme = window.localStorage.getItem('pipebot-theme');
     const initialTheme: Theme = savedTheme === 'dark' || savedTheme === 'light'
       ? savedTheme
-      : window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light';
+      : 'light';
 
     document.documentElement.dataset.theme = initialTheme;
     setTheme(initialTheme);
