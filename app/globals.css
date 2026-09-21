@@ -378,7 +378,15 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .preview-toolbar button.is-active { background: #fff; color: #0b0d12; }
 .trial-preview { position: relative; min-height: 680px; overflow: hidden; border-radius: 13px; background: var(--trial-background); color: var(--trial-foreground); box-shadow: 0 20px 55px -32px rgba(9,11,16,.6); transition: max-width .35s var(--ease); }
 .trial-preview.mobile { max-width: 390px; margin-inline: auto; }
-.trial-site-mirror { display: block; width: 100%; height: 680px; border: 0; background: var(--trial-background); }
+.mock-site { min-height: 680px; background: var(--trial-background); color: var(--trial-foreground); }
+.mock-site header { display: flex; min-height: 72px; align-items: center; justify-content: space-between; gap: 20px; padding: 0 clamp(22px, 5vw, 50px); border-bottom: 1px solid color-mix(in srgb, var(--trial-foreground) 14%, transparent); }
+.mock-site header strong { max-width: 55%; overflow: hidden; font-size: 1rem; text-overflow: ellipsis; white-space: nowrap; }
+.mock-site nav { display: flex; gap: 22px; color: color-mix(in srgb, var(--trial-foreground) 62%, transparent); font-size: .66rem; }
+.mock-site-copy { max-width: 670px; padding: clamp(65px, 10vw, 120px) clamp(22px, 6vw, 64px); }
+.mock-site-copy small { color: var(--trial-primary); font-family: var(--font-jetbrains-mono), monospace; font-size: .63rem; letter-spacing: .13em; }
+.mock-site-copy h3 { max-width: 600px; margin: 18px 0 22px; font-family: var(--font-serif); font-size: clamp(3rem, 7vw, 6.2rem); font-weight: 400; letter-spacing: -.045em; line-height: .88; overflow-wrap: anywhere; }
+.mock-site-copy p { max-width: 480px; color: color-mix(in srgb, var(--trial-foreground) 68%, transparent); }
+.mock-site-copy button { margin-top: 16px; padding: 13px 18px; border: 0; border-radius: 999px; background: color-mix(in srgb, var(--trial-primary) 76%, #090b10); color: #fff; font-size: .75rem; }
 .trial-chatbot { position: absolute; right: 18px; bottom: 18px; display: grid; width: min(370px, calc(100% - 36px)); max-height: 610px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--trial-foreground) 16%, transparent); border-radius: 17px; background: var(--trial-surface); color: var(--trial-foreground); box-shadow: 0 25px 75px -28px rgba(0,0,0,.58); }
 .trial-chat-head { display: flex; min-height: 66px; align-items: center; justify-content: space-between; padding: 0 17px; border-bottom: 1px solid color-mix(in srgb, var(--trial-foreground) 13%, transparent); }
 .trial-chat-head > div { display: flex; min-width: 0; align-items: center; gap: 10px; }
@@ -406,6 +414,9 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .trial-chat-form button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--trial-primary) 76%, #090b10); color: #fff; cursor: pointer; }
 .trial-chat-form button:disabled { opacity: .35; }
 .trial-chat-meta { display: flex; justify-content: space-between; gap: 10px; padding: 0 14px 10px; color: color-mix(in srgb, var(--trial-foreground) 54%, transparent); font-family: var(--font-jetbrains-mono), monospace; font-size: .62rem; letter-spacing: .05em; text-transform: uppercase; }
+.trial-preview.mobile .mock-site nav { display: none; }
+.trial-preview.mobile .mock-site-copy { padding-top: 76px; }
+.trial-preview.mobile .mock-site-copy h3 { font-size: 3.5rem; }
 .trial-preview.mobile .trial-chatbot { right: 10px; bottom: 10px; width: calc(100% - 20px); }
 .trial-result-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 26px 44px; align-items: center; padding: clamp(28px, 5vw, 48px); border-top: 1px solid var(--line); }
 .trial-result-footer p { max-width: 590px; margin: 0; color: var(--muted); font-size: .84rem; }
@@ -490,7 +501,9 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .trial-result { border-radius: 17px; }
   .trial-preview-wrap { padding: 8px; }
   .trial-preview { min-height: 650px; }
-  .trial-site-mirror { height: 650px; }
+  .mock-site { min-height: 650px; }
+  .mock-site nav { display: none; }
+  .mock-site-copy h3 { font-size: 3.6rem; }
   .trial-chatbot { right: 9px; bottom: 9px; width: calc(100% - 18px); }
   .trial-result-footer .button-primary { width: 100%; }
 }
