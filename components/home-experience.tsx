@@ -17,7 +17,7 @@ export function HomeExperience() {
               <h1>Deine Website<br /><em>kennt</em> die Antwort.</h1>
               <p className="hero-lead">PipeBot versteht dein Angebot und beantwortet Fragen genau dort, wo sie entstehen.</p>
               <div className="hero-actions">
-                <a className="button-primary" href="#ausprobieren">Selbst ausprobieren <span>↘</span></a>
+                <a className="button-primary" href="/testen/">Mit deiner Website testen <span>↗</span></a>
                 <a className="button-link" href="/contact/">Demo anfragen <span>↗</span></a>
               </div>
               <p className="hero-company">Ein Produkt von <a href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Pipeline AI Solutions</a></p>

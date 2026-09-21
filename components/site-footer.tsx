@@ -13,7 +13,7 @@ export function SiteFooter() {
         <div className="footer-links">
           <div>
             <strong>PipeBot</strong>
-            <a href="/#ausprobieren">Live-Demo</a>
+            <Link href="/testen/">Gratis testen</Link>
             <a href="/#system">System</a>
             <a href="/#warum">Kontrolle</a>
             <Link href="/contact/">Kontakt</Link>

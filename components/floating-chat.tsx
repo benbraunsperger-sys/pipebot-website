@@ -1,10 +1,12 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { PipeBotChat } from './pipebot-chat';
 
 export function FloatingChat() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -46,6 +48,8 @@ export function FloatingChat() {
       first.focus();
     }
   }
+
+  if (pathname.startsWith('/testen')) return null;
 
   return (
     <div className="floating-chat">

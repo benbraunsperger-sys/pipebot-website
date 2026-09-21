@@ -51,7 +51,7 @@ export function SiteHeader() {
       <div className="shell header-inner">
         <Logo />
         <nav className={`main-nav${open ? ' is-open' : ''}`} aria-label="Hauptnavigation">
-          <a href="/#ausprobieren" onClick={() => setOpen(false)}>Live-Demo</a>
+          <a href="/testen/" onClick={() => setOpen(false)}>Gratis testen</a>
           <a href="/#system" onClick={() => setOpen(false)}>System</a>
           <a href="/#warum" onClick={() => setOpen(false)}>Kontrolle</a>
           <a href="/contact/" onClick={() => setOpen(false)}>Kontakt</a>
