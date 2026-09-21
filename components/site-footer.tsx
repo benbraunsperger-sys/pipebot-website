@@ -7,14 +7,15 @@ export function SiteFooter() {
       <div className="shell footer-main">
         <div className="footer-brand">
           <Logo compact />
-          <p>PipeBot ist ein Produkt von Pipeline AI Solutions UG (haftungsbeschränkt).</p>
+          <p>PipeBot beantwortet Fragen direkt auf deiner Website. Ein Produkt von Pipeline AI Solutions.</p>
           <a className="footer-company-link" href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Zur Pipeline-Hauptseite <span>↗</span></a>
         </div>
         <div className="footer-links">
           <div>
             <strong>PipeBot</strong>
-            <a href="/#ausprobieren">Ausprobieren</a>
-            <a href="/#warum">So funktioniert es</a>
+            <a href="/#ausprobieren">Live-Demo</a>
+            <a href="/#system">System</a>
+            <a href="/#warum">Kontrolle</a>
           </div>
           <div>
             <strong>Unternehmen</strong>
@@ -29,7 +30,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="shell footer-bottom">
-        <span>© 2026 Pipeline AI Solutions UG (haftungsbeschränkt)</span>
+        <span>© 2026 Pipeline AI Solutions</span>
         <span>PipeBot · ein Produkt von Pipeline AI Solutions</span>
       </div>
     </footer>

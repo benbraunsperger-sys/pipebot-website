@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import { Instrument_Serif, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { FloatingChat } from '@/components/floating-chat';
 import './globals.css';
 
@@ -12,6 +12,13 @@ const spaceGrotesk = Space_Grotesk({
 const jetBrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
   subsets: ['latin'],
+  display: 'swap',
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  subsets: ['latin'],
+  weight: '400',
   display: 'swap',
 });
 
@@ -45,7 +52,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
+      <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} ${instrumentSerif.variable}`}>
         {children}
         <FloatingChat />
       </body>
