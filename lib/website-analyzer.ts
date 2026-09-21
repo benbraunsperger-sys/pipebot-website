@@ -5,6 +5,8 @@ import type { LookupAddress } from 'node:dns';
 const MAX_HTML_BYTES = 1_500_000;
 const MAX_CSS_BYTES = 300_000;
 const MAX_REDIRECTS = 3;
+const MAX_PREVIEW_HTML_CHARS = 850_000;
+const MAX_PREVIEW_CSS_CHARS = 650_000;
 
 type SiteAnalysis = {
   sourceUrl: string;
@@ -13,6 +15,7 @@ type SiteAnalysis = {
   title: string;
   description: string;
   knowledge: string;
+  previewDocument: string;
   colors: {
     primary: string;
     background: string;
@@ -336,6 +339,51 @@ function stylesheetUrls(html: string, baseUrl: URL) {
   return urls;
 }
 
+function escapeAttribute(value: string) {
+  return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function rebaseCssUrls(css: string, stylesheetUrl: URL) {
+  return css.replace(/url\(\s*(['"]?)(.*?)\1\s*\)/gi, (match, quote: string, rawUrl: string) => {
+    const value = rawUrl.trim();
+    if (!value || value.startsWith('#') || /^(?:data:|blob:|https?:|\/\/)/i.test(value) || /^var\(/i.test(value)) return match;
+    try {
+      const absolute = new URL(value, stylesheetUrl).href;
+      return `url("${absolute.replace(/"/g, '%22')}")`;
+    } catch {
+      return match;
+    }
+  });
+}
+
+function buildPreviewDocument(html: string, baseUrl: URL, externalCss: string) {
+  const sanitizedHtml = html
+    .slice(0, MAX_PREVIEW_HTML_CHARS)
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<(script|noscript|iframe|object|embed|applet|template)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
+    .replace(/<\/?(script|noscript|iframe|object|embed|applet|template)\b[^>]*>/gi, '')
+    .replace(/<meta\b[^>]*http-equiv\s*=\s*(['"]?)(?:refresh|content-security-policy)\1[^>]*>/gi, '')
+    .replace(/<base\b[^>]*>/gi, '')
+    .replace(/<link\b[^>]*>/gi, '')
+    .replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/\s(?:action|formaction)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+
+  const safeCss = externalCss
+    .slice(0, MAX_PREVIEW_CSS_CHARS)
+    .replace(/@import\s+(?:url\()?[^;]+;?/gi, '')
+    .replace(/<\/style/gi, '<\\/style');
+  const head = `<base href="${escapeAttribute(baseUrl.href)}"><meta name="referrer" content="no-referrer"><style>${safeCss}</style>`;
+  const interactionLock = `<style>html{scroll-behavior:auto!important}a,button,input,select,textarea,option,summary,[role="button"],[onclick]{pointer-events:none!important;cursor:default!important}</style>`;
+
+  if (/<head\b[^>]*>/i.test(sanitizedHtml)) {
+    return sanitizedHtml
+      .replace(/<head\b[^>]*>/i, (tag) => `${tag}${head}`)
+      .replace(/<\/head>/i, `${interactionLock}</head>`);
+  }
+
+  return `<!doctype html><html><head>${head}${interactionLock}</head><body>${sanitizedHtml}</body></html>`;
+}
+
 export async function analyzeWebsite(input: string): Promise<SiteAnalysis> {
   const requestedUrl = normalizeUrl(input);
   const { text: html, finalUrl } = await fetchPublicText(requestedUrl, 'html');
@@ -375,7 +423,7 @@ export async function analyzeWebsite(input: string): Promise<SiteAnalysis> {
   );
   const externalCss = cssResults
     .filter((result): result is PromiseFulfilledResult<{ text: string; finalUrl: URL }> => result.status === 'fulfilled')
-    .map((result) => result.value.text)
+    .map((result) => rebaseCssUrls(result.value.text, result.value.finalUrl))
     .join('\n');
   const themeColor = metaContent(safeHtml, 'theme-color');
   const colors = choosePalette(extractColors(`${themeColor}\n${inlineCss}\n${externalCss}`), themeColor);
@@ -387,6 +435,7 @@ export async function analyzeWebsite(input: string): Promise<SiteAnalysis> {
     title: (title || brandName).slice(0, 180),
     description: description.slice(0, 420),
     knowledge,
+    previewDocument: buildPreviewDocument(html, finalUrl, externalCss),
     colors,
   };
 }

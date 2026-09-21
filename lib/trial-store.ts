@@ -16,6 +16,7 @@ export type TrialProfile = {
     surface: string;
   };
   knowledge: string;
+  previewDocument: string;
   createdAt: number;
   expiresAt: number;
   messageCount: number;

@@ -31,7 +31,7 @@ npm run build
 
 Das Projekt nutzt dynamische Next.js-Routen unter `/api/chat`, `/api/trial/analyze` und `/api/trial/chat`. `NEOKENS_API_KEY` und optional `NEOKENS_BASE_URL` müssen in der jeweiligen Server-Umgebung hinterlegt werden.
 
-Die Testversion unter `/testen/` analysiert ausschließlich öffentlich erreichbare Websites, übernimmt das erkannte Farbsystem und erstellt einen temporären Chatbot. Ein Testprofil bleibt maximal 30 Minuten im Arbeitsspeicher, erlaubt acht Fragen und wird nicht dauerhaft gespeichert. Die Modellreihenfolge ist Claude Sonnet 5, GPT 5.6 Luna und Gemini 3.8 Flash.
+Die Testversion unter `/testen/` analysiert ausschließlich öffentlich erreichbare Websites, übernimmt das erkannte Farbsystem und erstellt einen temporären Chatbot. Zusätzlich zeigt sie eine abgeschottete, nicht-interaktive Spiegelung der öffentlich erreichbaren Startseite mit deren HTML, Bildern und bis zu drei Stylesheets. Ein Testprofil bleibt maximal 30 Minuten im Arbeitsspeicher, erlaubt acht Fragen und wird nicht dauerhaft gespeichert. Die Modellreihenfolge ist Claude Sonnet 5, GPT 5.6 Luna und Gemini 3.8 Flash.
 
 ## Deployment-Vorgabe
 

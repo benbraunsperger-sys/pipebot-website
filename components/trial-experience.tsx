@@ -21,6 +21,7 @@ type TrialProfile = {
     foreground: string;
     surface: string;
   };
+  previewDocument: string;
   questionsRemaining: number;
 };
 
@@ -280,10 +281,13 @@ export function TrialExperience() {
                       <div><button type="button" className={previewMode === 'desktop' ? 'is-active' : ''} onClick={() => setPreviewMode('desktop')}>Desktop</button><button type="button" className={previewMode === 'mobile' ? 'is-active' : ''} onClick={() => setPreviewMode('mobile')}>Mobil</button></div>
                     </div>
                     <div className={`trial-preview ${previewMode}`} style={previewStyle}>
-                      <div className="mock-site">
-                        <header><strong>{profile.brandName}</strong><nav><span>Leistungen</span><span>Über uns</span><span>Kontakt</span></nav></header>
-                        <div className="mock-site-copy"><small>WILLKOMMEN</small><h3>{profile.brandName}</h3><p>{profile.description}</p><button type="button">Mehr erfahren</button></div>
-                      </div>
+                      <iframe
+                        className="trial-site-mirror"
+                        title={`Statische Vorschau von ${profile.brandName}`}
+                        sandbox=""
+                        referrerPolicy="no-referrer"
+                        srcDoc={profile.previewDocument}
+                      />
 
                       <div className="trial-chatbot">
                         <div className="trial-chat-head"><div><span className="trial-brand-dot">{profile.brandName.charAt(0).toUpperCase()}</span><p><strong>{profile.brandName}</strong><small>KI-ASSISTENT · ONLINE</small></p></div><i /></div>

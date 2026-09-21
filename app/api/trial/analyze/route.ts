@@ -114,6 +114,7 @@ export async function POST(request: NextRequest) {
       tone: shortText(aiProfile.tone, 'klar, freundlich und direkt', 120),
       colors: analysis.colors,
       knowledge: analysis.knowledge,
+      previewDocument: analysis.previewDocument,
     });
 
     return NextResponse.json({
@@ -127,6 +128,7 @@ export async function POST(request: NextRequest) {
       welcome: trial.welcome,
       suggestions: trial.suggestions,
       colors: trial.colors,
+      previewDocument: trial.previewDocument,
       questionsRemaining: 8,
     }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error) {
