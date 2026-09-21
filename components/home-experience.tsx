@@ -131,7 +131,7 @@ export function HomeExperience() {
 
         <section className="final-cta" id="kontakt">
           <div className="shell final-card">
-            <p className="section-label light"><span /> Bereit</p>
+            <p className="section-label"><span /> Bereit</p>
             <h2>Deine Website kann<br /><em>mehr als warten.</em></h2>
             <div className="final-row">
               <p>Zeig uns deine Website. Wir zeigen dir, was PipeBot daraus machen kann.</p>
