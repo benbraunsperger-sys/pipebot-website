@@ -259,9 +259,10 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .floating-chat-panel .chat-messages { height: 310px; }
 .floating-chat-close { position: absolute; top: 13px; right: 13px; z-index: 2; display: grid; width: 29px; height: 29px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--muted); cursor: pointer; }
 .floating-chat-panel .chat-model { margin-right: 34px; }
-.floating-chat-trigger { min-height: 50px; padding: 0 20px; border: 0; border-radius: 999px; background: var(--accent); color: #fff; box-shadow: 0 14px 34px -14px rgba(8,120,255,.7); font-size: .8rem; font-weight: 650; cursor: pointer; transition: transform .25s var(--ease); }
-.floating-chat-trigger::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 9px; border-radius: 50%; background: #fff; vertical-align: 1px; }
-.floating-chat-trigger:hover { transform: translateY(-3px); }
+.floating-chat-trigger { min-height: 50px; padding: 0 19px; border: 1px solid var(--line-strong); border-radius: 14px; background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--ink); box-shadow: 0 18px 38px -24px rgba(9, 11, 16, .58); backdrop-filter: blur(14px); font-size: .8rem; font-weight: 650; cursor: pointer; transition: transform .25s var(--ease), border-color .25s ease, background .25s ease, color .25s ease; }
+.floating-chat-trigger::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 9px; border-radius: 50%; background: var(--accent); vertical-align: 1px; }
+.floating-chat-trigger:hover { transform: translateY(-3px); border-color: var(--ink); }
+.floating-chat-trigger[aria-expanded="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 
 /* Footer */
 .site-footer { padding: 74px 0 24px; background: var(--paper); }
