@@ -41,10 +41,13 @@ Kein Netlify-Deployment und keine Netlify-Verknüpfung verwenden.
 
 Für die Domaintrennung, Weiterleitungen und den Go-live gibt es eine konkrete Arbeitsliste unter [docs/PIPEBOT-MIGRATION.md](docs/PIPEBOT-MIGRATION.md).
 
-## Vor Veröffentlichung ausfüllen
+## Aktueller Produktionsstatus
 
-- Anschrift im Impressum
-- Firmenbuchnummer
-- USt-ID
-- Datenschutzangaben und Auftragsverarbeitung prüfen, sobald Hosting und KI-Dienste final feststehen
-- optional: Google-Search-Console-Token als `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` setzen
+- Anbieter: Pipeline AI Solutions, Einzelunternehmen von Paul Hölzl
+- Hosting: Railway
+- KI-Schnittstelle: Neokens V2, serverseitig angebunden
+- Produktkontakt: `office@pipeline-solutions.at` und `+43 681 207 64 203`
+- Sitemap: ausschließlich die vier kanonischen PipeBot-Seiten
+- Optional: Google-Search-Console-Token als `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` setzen
+
+Externe Betriebsaufgaben wie DNS, Schlüsselrotation und eine abschließende Rechtsprüfung werden in `docs/PIPEBOT-MIGRATION.md` geführt.

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>https://pipebot.at/sitemaps/sitemap-basis.xml</loc><lastmod>2026-09-21</lastmod></sitemap>
-  <sitemap><loc>https://pipebot.at/sitemaps/sitemap-leistungen.xml</loc><lastmod>2026-09-21</lastmod></sitemap>
-  <sitemap><loc>https://pipebot.at/sitemaps/sitemap-branchen.xml</loc><lastmod>2026-09-21</lastmod></sitemap>
-  <sitemap><loc>https://pipebot.at/sitemaps/sitemap-regionen.xml</loc><lastmod>2026-09-21</lastmod></sitemap>
-  <sitemap><loc>https://pipebot.at/sitemaps/sitemap-ratgeber.xml</loc><lastmod>2026-09-21</lastmod></sitemap>
-  <sitemap><loc>https://pipebot.at/sitemaps/sitemap-vergleich.xml</loc><lastmod>2026-09-21</lastmod></sitemap>
-  <sitemap><loc>https://pipebot.at/sitemaps/sitemap-ki.xml</loc><lastmod>2026-09-21</lastmod></sitemap>
-  <sitemap><loc>https://pipebot.at/sitemaps/sitemap-wissen.xml</loc><lastmod>2026-09-21</lastmod></sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://pipebot.at/</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://pipebot.at/contact/</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://pipebot.at/impressum/</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://pipebot.at/datenschutz/</loc><lastmod>2026-09-21</lastmod></url>
+</urlset>

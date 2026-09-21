@@ -17,6 +17,10 @@
 - [x] Railway-Deployment aus dem GitHub-Repository auf Branch `main`
 - [x] PipeBot-Link in der Navigation und im Footer von `pipeline-solutions.at`
 - [x] Bestehende Pipeline-Weiterleitung `/tryout/*` auf den PipeBot-Testbereich vorbereitet
+- [x] Kopierte Pipeline-Seiten aus dem PipeBot-Repository entfernt
+- [x] Alte Unternehmens-, Leistungs-, Branchen- und Wissenspfade auf `pipeline-solutions.at` weitergeleitet
+- [x] Eigenständige PipeBot-Kontaktseite ohne wirkungsloses Formular
+- [x] Impressum, Datenschutzerklärung, Security-Header und KI-Kennzeichnung aktualisiert
 
 ## Redirect-Map
 
@@ -26,7 +30,7 @@
 | PipeBot-spezifische alte Kampagnen-URLs | passende PipeBot-Section oder `https://pipebot.at/` | nach Analytics-/Search-Console-Export ergänzen |
 | Unternehmens-, Leistungs- und Rechteseiten | auf `pipeline-solutions.at` belassen | keine Weiterleitung |
 
-Nach dem Go-live müssen die Weiterleitungen mit `curl -I` und direkt auf Railway auf Status `301` geprüft werden.
+Die Weiterleitungen werden von Next.js als permanente HTTP-308-Weiterleitungen ausgeliefert.
 
 ## Railway: Reihenfolge
 
@@ -53,11 +57,12 @@ Nach dem Go-live müssen die Weiterleitungen mit `curl -I` und direkt auf Railwa
 - Social-Profile, Google-Unternehmensprofil und relevante Partnerprofile auf `pipebot.at` aktualisieren.
 - Bestehende Kunden erhalten eine kurze Information über die neue Produktdomain, nicht über eine Unternehmensumbenennung.
 
-## Vor dem öffentlichen Launch
+## Noch extern zu erledigen
 
-- [ ] Rechtliche Trägerschaft, Anschrift, GISA-/Firmenangaben und Umsatzsteuerangaben final bestätigen
-- [ ] Datenschutz mit tatsächlichem Hosting, Auftragsverarbeitung und Drittlandtransfer rechtlich prüfen
+- [x] Rechtliche Trägerschaft, Anschrift, GISA- und Umsatzsteuerangaben anhand der veröffentlichten Unternehmensangaben übernommen
+- [ ] Datenschutz und Auftragsverarbeitung abschließend rechtlich prüfen lassen
 - [ ] Den im Chat geteilten Neokens-API-Key widerrufen/rotieren und ausschließlich als Railway-Umgebungsvariable hinterlegen
-- [ ] E-Mail-Adresse für Produktanfragen verbindlich festlegen und testen
-- [ ] DNS, TLS-Zertifikat und beide Domainvarianten testen
+- [x] E-Mail-Adresse und Telefonnummer für Produktanfragen festgelegt
+- [x] DNS und TLS für `pipebot.at` getestet
+- [ ] `www.pipebot.at` beim DNS-Anbieter einrichten und anschließend in Railway hinterlegen
 - [ ] Redirect-Map anhand echter Search-Console- und Analytics-Daten vervollständigen

@@ -24,6 +24,8 @@ const instrumentSerif = Instrument_Serif({
 
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
 
+const themeScript = `try{var t=localStorage.getItem('pipebot-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://pipebot.at'),
   ...(googleSiteVerification ? { verification: { google: googleSiteVerification } } : {}),
@@ -41,17 +43,20 @@ export const metadata: Metadata = {
     siteName: 'PipeBot',
     title: 'PipeBot – Deine Website antwortet',
     description: 'Deine Website antwortet. Mit PipeBot von Pipeline AI Solutions.',
+    images: [{ url: '/pipebot-logo.png', width: 450, height: 378, alt: 'PipeBot' }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'PipeBot – Deine Website antwortet',
     description: 'Deine Website antwortet. Mit PipeBot von Pipeline AI Solutions.',
+    images: ['/pipebot-logo.png'],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="de" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
       <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} ${instrumentSerif.variable}`}>
         {children}
         <FloatingChat />

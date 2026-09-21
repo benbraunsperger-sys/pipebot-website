@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createHash } from 'node:crypto';
 import { PIPEBOT_SYSTEM_PROMPT } from '@/lib/pipebot-prompt';
 
 export const runtime = 'nodejs';
@@ -11,16 +12,37 @@ const RATE_WINDOW_MS = 60_000;
 const RATE_LIMIT = 12;
 const MAX_HISTORY = 12;
 const MAX_MESSAGE_LENGTH = 1_500;
-const buckets = new Map<string, { count: number; resetAt: number }>();
+const MAX_REQUEST_BYTES = 32_000;
+const MAX_BUCKETS = 10_000;
+
+type RateBucket = { count: number; resetAt: number };
+const globalRateLimit = globalThis as typeof globalThis & { pipebotRateBuckets?: Map<string, RateBucket> };
+const buckets = globalRateLimit.pipebotRateBuckets ?? new Map<string, RateBucket>();
+globalRateLimit.pipebotRateBuckets = buckets;
 
 function getClientId(request: NextRequest) {
-  return request.headers.get('x-nf-client-connection-ip')
-    ?? request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+  const forwarded = request.headers.get('x-forwarded-for')
+    ?.split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const address = request.headers.get('cf-connecting-ip')
+    ?? request.headers.get('x-real-ip')
+    ?? forwarded?.at(-1)
     ?? 'local';
+
+  return createHash('sha256').update(address).digest('hex');
 }
 
 function isRateLimited(clientId: string) {
   const now = Date.now();
+
+  if (buckets.size >= MAX_BUCKETS) {
+    for (const [key, bucket] of buckets) {
+      if (bucket.resetAt <= now) buckets.delete(key);
+    }
+    if (buckets.size >= MAX_BUCKETS) buckets.delete(buckets.keys().next().value as string);
+  }
+
   const current = buckets.get(clientId);
 
   if (!current || current.resetAt <= now) {
@@ -51,12 +73,24 @@ export async function POST(request: NextRequest) {
   }
 
   if (isRateLimited(getClientId(request))) {
-    return NextResponse.json({ error: 'Zu viele Nachrichten. Bitte kurz warten.' }, { status: 429 });
+    return NextResponse.json(
+      { error: 'Zu viele Nachrichten. Bitte kurz warten.' },
+      { status: 429, headers: { 'Retry-After': '60' } },
+    );
+  }
+
+  const contentLength = Number(request.headers.get('content-length') ?? 0);
+  if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
+    return NextResponse.json({ error: 'Die Anfrage ist zu groß.' }, { status: 413 });
   }
 
   let body: unknown;
   try {
-    body = await request.json();
+    const rawBody = await request.text();
+    if (Buffer.byteLength(rawBody, 'utf8') > MAX_REQUEST_BYTES) {
+      return NextResponse.json({ error: 'Die Anfrage ist zu groß.' }, { status: 413 });
+    }
+    body = JSON.parse(rawBody) as unknown;
   } catch {
     return NextResponse.json({ error: 'Ungültige Anfrage.' }, { status: 400 });
   }
@@ -96,7 +130,7 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       console.error('Neokens chat request failed', { status: response.status, model });
-      return NextResponse.json({ error: 'PipeBot ist gerade nicht erreichbar. Bitte versuchen Sie es erneut.' }, { status: 502 });
+      return NextResponse.json({ error: 'PipeBot ist gerade nicht erreichbar. Versuch es bitte erneut.' }, { status: 502 });
     }
 
     const data = await response.json() as {

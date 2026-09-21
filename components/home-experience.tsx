@@ -13,12 +13,12 @@ export function HomeExperience() {
         <section className="hero" id="top">
           <div className="hero-grid shell">
             <div className="hero-copy">
-              <p className="section-label"><span /> PipeBot · Antwortsystem für Websites</p>
+              <p className="section-label"><span /> PipeBot · KI-Assistent für Websites</p>
               <h1>Deine Website<br /><em>kennt</em> die Antwort.</h1>
               <p className="hero-lead">PipeBot versteht dein Angebot und beantwortet Fragen genau dort, wo sie entstehen.</p>
               <div className="hero-actions">
                 <a className="button-primary" href="#ausprobieren">Selbst ausprobieren <span>↘</span></a>
-                <a className="button-link" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Demo">Demo anfragen <span>↗</span></a>
+                <a className="button-link" href="/contact/">Demo anfragen <span>↗</span></a>
               </div>
               <p className="hero-company">Ein Produkt von <a href="https://pipeline-solutions.at" target="_blank" rel="noreferrer">Pipeline AI Solutions</a></p>
             </div>
@@ -69,7 +69,7 @@ export function HomeExperience() {
               <div className="demo-note"><span>01</span><p>Schreib, was du über PipeBot wissen willst.</p></div>
               <div className="demo-note"><span>02</span><p>Erhalte sofort eine klare Antwort.</p></div>
             </div>
-            <PipeBotChat />
+            <PipeBotChat idPrefix="pipebot-inline" />
           </div>
         </section>
 
@@ -114,7 +114,7 @@ export function HomeExperience() {
               <p className="section-label"><span /> Kontrolle</p>
               <h2>Er weiß viel.<br /><em>Aber nur über dich.</em></h2>
               <p>Du bestimmst die Inhalte. PipeBot bleibt bei deinem Angebot und macht aus Wissen kein Ratespiel.</p>
-              <a className="button-link" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Inhalte">Über deine Inhalte sprechen <span>↗</span></a>
+              <a className="button-link" href="/contact/">Über deine Inhalte sprechen <span>↗</span></a>
             </div>
             <div className="control-panel">
               <div className="control-panel-head"><span>BEISPIEL-WISSENSBASIS</span><span>AKTIV</span></div>
@@ -135,7 +135,7 @@ export function HomeExperience() {
             <h2>Deine Website kann<br /><em>mehr als warten.</em></h2>
             <div className="final-row">
               <p>Zeig uns deine Website. Wir zeigen dir, was PipeBot daraus machen kann.</p>
-              <a className="button-light" href="mailto:office@pipeline-solutions.at?subject=PipeBot%20Demo">Demo anfragen <span>↗</span></a>
+              <a className="button-primary" href="/contact/">Demo anfragen <span>↗</span></a>
             </div>
           </div>
         </section>

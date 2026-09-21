@@ -15,7 +15,7 @@ const initialMessages: Message[] = [
   {
     id: 'welcome',
     role: 'assistant',
-    content: 'Hallo, ich bin **PipeBot**. Was möchtest du wissen?',
+    content: 'Hallo, ich bin **PipeBot**, der KI-Assistent von Pipeline AI Solutions. Was möchtest du wissen?',
   },
 ];
 
@@ -25,7 +25,7 @@ const suggestions = [
   'Wie bekomme ich eine Demo?',
 ];
 
-export function PipeBotChat() {
+export function PipeBotChat({ idPrefix = 'pipebot' }: { idPrefix?: string }) {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(false);
@@ -85,7 +85,7 @@ export function PipeBotChat() {
   return (
     <div className="live-chat">
       <div className="live-chat-bar">
-        <div className="chat-product"><img src="/pipebot-logo.png" width="30" height="26" alt="" /><div><strong>PipeBot</strong><small>FÜR DEINE WEBSITE</small></div></div>
+        <div className="chat-product"><img src="/pipebot-logo.png" width="30" height="26" alt="" /><div><strong>PipeBot</strong><small>KI-ASSISTENT</small></div></div>
         <div className="chat-model"><i /> BEREIT</div>
       </div>
 
@@ -118,8 +118,8 @@ export function PipeBotChat() {
       )}
 
       <form className="chat-compose" onSubmit={handleSubmit}>
-        <label className="sr-only" htmlFor="pipebot-message">Nachricht an PipeBot</label>
-        <textarea id="pipebot-message" value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => {
+        <label className="sr-only" htmlFor={`${idPrefix}-message`}>Nachricht an PipeBot</label>
+        <textarea id={`${idPrefix}-message`} value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => {
           if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
             event.currentTarget.form?.requestSubmit();
@@ -129,7 +129,7 @@ export function PipeBotChat() {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4.7 14-2.8-5.5L5 12Z" /><path d="m11.5 13.5 3.3-3.3" /></svg>
         </button>
       </form>
-      <p className="chat-disclosure">Automatische Antwort. Prüfe wichtige Angaben.</p>
+      <p className="chat-disclosure">KI-generierte Antwort. Prüfe wichtige Angaben.</p>
     </div>
   );
 }

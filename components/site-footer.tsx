@@ -16,6 +16,7 @@ export function SiteFooter() {
             <a href="/#ausprobieren">Live-Demo</a>
             <a href="/#system">System</a>
             <a href="/#warum">Kontrolle</a>
+            <Link href="/contact/">Kontakt</Link>
           </div>
           <div>
             <strong>Unternehmen</strong>
