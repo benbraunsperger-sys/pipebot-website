@@ -3,43 +3,22 @@ import { LegalPage } from '@/components/legal-page';
 
 export const metadata: Metadata = {
   title: 'Datenschutz',
-  description: 'Datenschutzhinweise für die PipeBot-Website von Pipeline AI Solutions UG (haftungsbeschränkt).',
+  description: 'Datenschutzerklärung für die PipeBot-Website von Pipeline AI Solutions.',
   alternates: { canonical: '/datenschutz/' },
 };
 
 export default function DatenschutzPage() {
   return (
-    <LegalPage eyebrow="Rechtliches" title="Datenschutz" intro="Informationen zur Verarbeitung personenbezogener Daten auf pipebot.at.">
-      <section>
-        <h2>1. Verantwortlicher</h2>
-        <p><strong>Pipeline AI Solutions UG (haftungsbeschränkt)</strong><br />[ADRESSE]<br />E-Mail: <a href="mailto:office@pipeline-solutions.at">office@pipeline-solutions.at</a></p>
-      </section>
-      <section>
-        <h2>2. Bereitstellung der Website</h2>
-        <p>Beim Aufruf dieser Website können technisch erforderliche Zugriffsdaten verarbeitet werden, insbesondere IP-Adresse, Zeitpunkt des Aufrufs, angeforderte Seite, Browser- und Geräteinformationen sowie Fehler- und Sicherheitsprotokolle.</p>
-        <p>Die Verarbeitung erfolgt zur sicheren und zuverlässigen Bereitstellung der Website auf Grundlage unseres berechtigten Interesses gemäß Art. 6 Abs. 1 lit. f DSGVO.</p>
-      </section>
-      <section>
-        <h2>3. Kontaktaufnahme</h2>
-        <p>Wenn Sie per E-Mail Kontakt aufnehmen, verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage und für mögliche Anschlussfragen. Rechtsgrundlage ist je nach Inhalt der Anfrage Art. 6 Abs. 1 lit. b oder lit. f DSGVO.</p>
-      </section>
-      <section>
-        <h2>4. Nutzung des PipeBot-Chats</h2>
-        <p>Wenn Sie den PipeBot-Chat verwenden, werden Ihre eingegebenen Nachrichten und der für die Antwort erforderliche Gesprächsverlauf an den API-Dienst Neokens, Inc., USA, übermittelt. Neokens leitet die Anfrage zur Erstellung der Antwort an den ausgewählten KI-Anbieter weiter. Für diese Website wird derzeit ein Modell von OpenAI verwendet.</p>
-        <p>Die Verarbeitung erfolgt zur Beantwortung Ihrer freiwillig gestellten Anfrage. Rechtsgrundlage ist je nach Inhalt Art. 6 Abs. 1 lit. b oder lit. f DSGVO. Unser berechtigtes Interesse liegt in der unmittelbaren Beantwortung von Produkt- und Kontaktfragen.</p>
-        <p>Diese Website speichert den Chatverlauf nicht dauerhaft. Nach Angaben von Neokens werden Inhalte von Anfragen und Antworten nur vorübergehend zur Weiterleitung verarbeitet; Nutzungsmetadaten können für Abrechnung, Sicherheit und Missbrauchserkennung gespeichert werden. Weitere Informationen finden Sie in der <a href="https://v2.neokens.com/legal/privacy" target="_blank" rel="noreferrer">Datenschutzerklärung von Neokens</a>.</p>
-        <p>Geben Sie im Chat keine vertraulichen, besonderen oder nicht erforderlichen personenbezogenen Daten ein.</p>
-      </section>
-      <section>
-        <h2>5. Cookies, lokale Speicherung und Analyse</h2>
-        <p>Diese Version der Website setzt keine eigenen Analyse- oder Marketing-Cookies ein. Die Auswahl des hellen oder dunklen Farbschemas wird ausschließlich lokal in Ihrem Browser gespeichert.</p>
-      </section>
-      <section>
-        <h2>6. Ihre Rechte</h2>
-        <p>Sie haben – soweit die gesetzlichen Voraussetzungen vorliegen – das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Zur Ausübung Ihrer Rechte schreiben Sie an <a href="mailto:office@pipeline-solutions.at">office@pipeline-solutions.at</a>.</p>
-        <p>Außerdem haben Sie das Recht, Beschwerde bei einer zuständigen Datenschutzaufsichtsbehörde einzulegen. In Österreich ist dies die Österreichische Datenschutzbehörde.</p>
-      </section>
-      <aside className="todo-note"><strong>TODO vor Veröffentlichung:</strong> Hosting-Anbieter, Auftragsverarbeitungsverträge, Drittlandübermittlungen und tatsächliche technische Dienste nach der finalen Netlify- und Neokens-Konfiguration rechtlich prüfen und gegebenenfalls ergänzen.</aside>
+    <LegalPage eyebrow="Rechtliches" title="Datenschutzerklärung" intro="Informationen zur Verarbeitung personenbezogener Daten auf pipebot.at. Stand: 21. September 2026.">
+      <section><h2>1. Verantwortlicher.</h2><p><strong>Pipeline AI Solutions</strong><br />Paul Hölzl<br />Edholz 10, 4115 Kleinzell im Mühlkreis, Österreich<br />E-Mail: <a href="mailto:office@pipeline-solutions.at">office@pipeline-solutions.at</a><br />Telefon: <a href="tel:+4368120764203">+43 681 207 64 203</a></p></section>
+      <section><h2>2. Allgemeines.</h2><p>Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung dieser Website, zur Bearbeitung von Anfragen oder zur Erfüllung vertraglicher und gesetzlicher Pflichten erforderlich ist. Maßgeblich sind insbesondere die Datenschutz-Grundverordnung (DSGVO) und die anwendbaren österreichischen Datenschutzbestimmungen.</p></section>
+      <section><h2>3. Hosting und technische Zugriffsdaten.</h2><p>Diese Website wird über Railway bereitgestellt. Beim Aufruf können technisch erforderliche Daten verarbeitet werden, insbesondere IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browser- und Geräteinformationen sowie Fehler- und Sicherheitsprotokolle.</p><p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der sicheren und zuverlässigen Bereitstellung der Website. Weitere Informationen finden Sie in der <a href="https://railway.com/legal/privacy" target="_blank" rel="noreferrer">Datenschutzerklärung von Railway</a>.</p></section>
+      <section><h2>4. Kontaktaufnahme.</h2><p>Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir die von Ihnen übermittelten Angaben zur Bearbeitung Ihrer Anfrage und für mögliche Anschlussfragen. Rechtsgrundlage ist je nach Inhalt der Anfrage Art. 6 Abs. 1 lit. b oder lit. f DSGVO.</p><p>Wir speichern Anfragen nur so lange, wie dies für die Bearbeitung und mögliche Folgekommunikation erforderlich ist; gesetzliche Aufbewahrungspflichten bleiben unberührt.</p></section>
+      <section><h2>5. PipeBot-Chat und KI-Verarbeitung.</h2><p>Wenn Sie den PipeBot-Chat verwenden, werden Ihre eingegebenen Nachrichten und der für die Antwort erforderliche Gesprächsverlauf an den von uns eingesetzten API-Dienst Neokens übermittelt. Neokens leitet die Anfrage zur Antwortgenerierung an den ausgewählten KI-Anbieter weiter. Für diese Website wird derzeit ein Modell von OpenAI verwendet.</p><p>Die Verarbeitung erfolgt zur Beantwortung Ihrer freiwillig gestellten Anfrage. Der Chat ist kein Analyse-, Marketing- oder Trackingdienst; wir verwenden die Chatdaten nicht für Werbeprofile.</p><p>Im Projekt wird kein eigener dauerhafter Chatverlauf gespeichert. Die konkrete Verarbeitung, Protokollierung und Speicherdauer bei Neokens und den nachgelagerten Anbietern richtet sich nach deren Bedingungen und muss im Rahmen der finalen Auftragsverarbeitungs- und Datenschutzprüfung bestätigt werden. Weitere Informationen finden Sie in der <a href="https://v2.neokens.com/legal/privacy" target="_blank" rel="noreferrer">Datenschutzerklärung von Neokens</a>.</p><p>Geben Sie im Chat keine besonderen Kategorien personenbezogener Daten, Zugangsdaten oder vertraulichen Geschäftsgeheimnisse ein.</p></section>
+      <section><h2>6. Cookies, lokale Speicherung und Analyse.</h2><p>Diese Version der Website setzt keine eigenen Analyse-, Marketing- oder Trackingdienste ein. Die Auswahl des hellen oder dunklen Farbschemas wird ausschließlich lokal in Ihrem Browser gespeichert. Es werden keine externen Schriftarten oder Social-Media-Inhalte eingebettet.</p></section>
+      <section><h2>7. Empfänger und Auftragsverarbeitung.</h2><p>Innerhalb unseres Teams erhalten nur jene Personen Zugriff auf personenbezogene Daten, die diese zur Bearbeitung benötigen. Externe Dienstleister setzen wir nur ein, soweit dies für Hosting, Kommunikation, KI-Verarbeitung oder Projektabwicklung erforderlich ist und eine datenschutzrechtliche Grundlage besteht.</p></section>
+      <section><h2>8. Ihre Rechte.</h2><p>Sie haben – soweit die gesetzlichen Voraussetzungen vorliegen – das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Zur Ausübung Ihrer Rechte schreiben Sie an <a href="mailto:office@pipeline-solutions.at">office@pipeline-solutions.at</a>.</p><p>Außerdem haben Sie das Recht, Beschwerde bei einer Datenschutzaufsichtsbehörde einzulegen. In Österreich ist dies die Österreichische Datenschutzbehörde.</p></section>
+      <section><h2>9. Datensicherheit und Aktualisierung.</h2><p>Wir setzen angemessene technische und organisatorische Maßnahmen ein, um Daten gegen Verlust, Missbrauch und unbefugten Zugriff zu schützen. Wir passen diese Datenschutzerklärung an, wenn sich die Website, eingesetzte Dienste oder rechtliche Anforderungen ändern.</p></section>
     </LegalPage>
   );
 }

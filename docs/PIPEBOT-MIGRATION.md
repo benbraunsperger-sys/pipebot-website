@@ -4,8 +4,8 @@
 
 | Aufgabe | Domain | Eigentümer |
 | --- | --- | --- |
-| Unternehmen, Leistungen, Team, allgemeiner Kontakt | `pipeline-solutions.at` | Pipeline AI Solutions UG |
-| PipeBot erklären, testen und anfragen | `pipebot.at` | Produkt von Pipeline AI Solutions UG |
+| Unternehmen, Leistungen, Team, allgemeiner Kontakt | `pipeline-solutions.at` | Pipeline AI Solutions |
+| PipeBot erklären, testen und anfragen | `pipebot.at` | Produkt von Pipeline AI Solutions |
 
 `pipeline-solutions.at` bleibt die Unternehmensseite. Nur Seiten, deren primäres Thema PipeBot ist, werden auf `pipebot.at` weitergeleitet.
 
@@ -14,7 +14,7 @@
 - [x] Eigenständige PipeBot-Website inklusive Chat und mobiler Variante
 - [x] Produkt- und Unternehmenszuordnung auf PipeBot-Seite und im Footer
 - [x] Sitemap, Robots-Datei, Canonical-URLs und Open-Graph-Metadaten
-- [x] Netlify-Konfiguration mit Next.js-Plugin und Sicherheitsheadern
+- [x] Railway-Deployment aus dem GitHub-Repository auf Branch `main`
 - [x] PipeBot-Link in der Navigation und im Footer von `pipeline-solutions.at`
 - [x] Bestehende Pipeline-Weiterleitung `/tryout/*` auf den PipeBot-Testbereich vorbereitet
 
@@ -26,14 +26,14 @@
 | PipeBot-spezifische alte Kampagnen-URLs | passende PipeBot-Section oder `https://pipebot.at/` | nach Analytics-/Search-Console-Export ergänzen |
 | Unternehmens-, Leistungs- und Rechteseiten | auf `pipeline-solutions.at` belassen | keine Weiterleitung |
 
-Nach dem Go-live müssen die Weiterleitungen mit `curl -I` oder dem Netlify-Redirect-Tester auf Status `301` geprüft werden.
+Nach dem Go-live müssen die Weiterleitungen mit `curl -I` und direkt auf Railway auf Status `301` geprüft werden.
 
-## Netlify: Reihenfolge
+## Railway: Reihenfolge
 
-1. Neues Netlify-Projekt mit dem PipeBot-Repository verbinden.
+1. Railway-Service mit `benbraunsperger-sys/pipebot-website` auf Branch `main` verbinden.
 2. Produktionsdomain `pipebot.at` und `www.pipebot.at` hinterlegen; eine Variante als primär definieren.
-3. DNS-Einträge beim Domainanbieter auf die von Netlify genannten Werte setzen.
-4. In Netlify die Variablen `NEOKENS_API_KEY`, `NEOKENS_BASE_URL` und `NEOKENS_MODEL` setzen.
+3. DNS-Einträge beim Domainanbieter auf die von Railway genannten Werte setzen.
+4. In Railway die Variablen `NEOKENS_API_KEY`, `NEOKENS_BASE_URL` und `NEOKENS_MODEL` setzen.
 5. Optional den Search-Console-Token als `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` setzen.
 6. Deploy ausführen und den sichtbaren Chat testen.
 7. Erst danach die Pipeline-Weiterleitung für `/tryout/*` veröffentlichen.
@@ -55,9 +55,9 @@ Nach dem Go-live müssen die Weiterleitungen mit `curl -I` oder dem Netlify-Redi
 
 ## Vor dem öffentlichen Launch
 
-- [ ] Anschrift, Firmenbuchnummer und USt-ID in Impressum eintragen
+- [ ] Rechtliche Trägerschaft, Anschrift, GISA-/Firmenangaben und Umsatzsteuerangaben final bestätigen
 - [ ] Datenschutz mit tatsächlichem Hosting, Auftragsverarbeitung und Drittlandtransfer rechtlich prüfen
-- [ ] Den im Chat geteilten Neokens-API-Key widerrufen/rotieren und ausschließlich als Netlify-Umgebungsvariable hinterlegen
+- [ ] Den im Chat geteilten Neokens-API-Key widerrufen/rotieren und ausschließlich als Railway-Umgebungsvariable hinterlegen
 - [ ] E-Mail-Adresse für Produktanfragen verbindlich festlegen und testen
 - [ ] DNS, TLS-Zertifikat und beide Domainvarianten testen
 - [ ] Redirect-Map anhand echter Search-Console- und Analytics-Daten vervollständigen
