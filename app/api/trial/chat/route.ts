@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createNeokensCompletion, type NeokensMessage } from '@/lib/neokens';
-import { consumeRateLimit, getRateLimitKey } from '@/lib/rate-limit';
+import { consumeRateLimit, getClientIdentity } from '@/lib/rate-limit';
 import { getTrial } from '@/lib/trial-store';
+import { checkTrialOrigin } from '@/lib/trial-security';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -23,7 +24,14 @@ function isMessage(value: unknown): value is ChatMessage {
 }
 
 export async function POST(request: NextRequest) {
-  const rate = consumeRateLimit(getRateLimitKey(request, 'trial-chat'), 30, 10 * 60_000);
+  if (!checkTrialOrigin(request)) {
+    return NextResponse.json({ error: 'Diese Anfrage wurde abgewiesen.' }, { status: 403 });
+  }
+
+  const rate = await consumeRateLimit(request, 'trial-chat', 30, 10 * 60_000);
+  if (rate.unavailable) {
+    return NextResponse.json({ error: 'Der Sicherheitsschutz ist gerade nicht verfügbar. Versuch es später erneut.' }, { status: 503 });
+  }
   if (!rate.allowed) {
     return NextResponse.json(
       { error: 'Zu viele Testnachrichten. Versuch es bitte später erneut.' },
@@ -52,6 +60,17 @@ export async function POST(request: NextRequest) {
   if (!trial) {
     return NextResponse.json({ error: 'Dein Test ist abgelaufen. Analysiere die Website bitte erneut.' }, { status: 410 });
   }
+
+  let ownerIdentity: string;
+  try {
+    ownerIdentity = getClientIdentity(request);
+  } catch {
+    return NextResponse.json({ error: 'Der Sicherheitsschutz ist nicht korrekt konfiguriert.' }, { status: 503 });
+  }
+  if (ownerIdentity !== trial.ownerIdentity) {
+    return NextResponse.json({ error: 'Dieser Test gehört zu einer anderen Verbindung. Starte bitte einen neuen Test.' }, { status: 403 });
+  }
+
   if (trial.messageCount >= MAX_TRIAL_MESSAGES) {
     return NextResponse.json({ error: 'Deine acht kostenlosen Testfragen sind aufgebraucht.' }, { status: 429 });
   }

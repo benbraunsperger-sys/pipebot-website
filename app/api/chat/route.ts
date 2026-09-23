@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createNeokensCompletion } from '@/lib/neokens';
 import { PIPEBOT_SYSTEM_PROMPT } from '@/lib/pipebot-prompt';
-import { consumeRateLimit, getRateLimitKey } from '@/lib/rate-limit';
+import { consumeRateLimit } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -27,7 +27,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Der Chat ist noch nicht konfiguriert.' }, { status: 503 });
   }
 
-  const rate = consumeRateLimit(getRateLimitKey(request, 'main-chat'), 12, 60_000);
+  const rate = await consumeRateLimit(request, 'main-chat', 12, 60_000);
+  if (rate.unavailable) {
+    return NextResponse.json({ error: 'Der Sicherheitsschutz ist gerade nicht verfügbar. Versuch es später erneut.' }, { status: 503 });
+  }
   if (!rate.allowed) {
     return NextResponse.json(
       { error: 'Zu viele Nachrichten. Bitte kurz warten.' },

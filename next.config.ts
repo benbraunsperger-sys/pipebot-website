@@ -2,7 +2,6 @@ import type { NextConfig } from 'next';
 
 const legacySections = [
   'about',
-  'branchen',
   'ki',
   'leistungen',
   'mehrwert',
@@ -15,7 +14,7 @@ const legacySections = [
 ];
 
 const securityHeaders = [
-  { key: 'Content-Security-Policy', value: "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' data:; form-action 'self' mailto:; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'" },
+  { key: 'Content-Security-Policy', value: "default-src 'self'; base-uri 'self'; connect-src 'self' https://challenges.cloudflare.com; font-src 'self' data:; form-action 'self' mailto:; frame-ancestors 'none'; frame-src https://challenges.cloudflare.com; img-src 'self' data:; object-src 'none'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'" },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=()' },
   { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },

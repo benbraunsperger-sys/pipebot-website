@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 
 export type TrialProfile = {
   id: string;
+  ownerIdentity: string;
   sourceUrl: string;
   hostname: string;
   brandName: string;

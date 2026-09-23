@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Instrument_Serif, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { FloatingChat } from '@/components/floating-chat';
 import './globals.css';
+import './industry-pages.css';
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',

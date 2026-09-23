@@ -52,6 +52,7 @@ export function SiteHeader() {
         <Logo />
         <nav className={`main-nav${open ? ' is-open' : ''}`} aria-label="Hauptnavigation">
           <a href="/testen/" onClick={() => setOpen(false)}>Gratis testen</a>
+          <a href="/branchen/" onClick={() => setOpen(false)}>Nach Branche</a>
           <a href="/#system" onClick={() => setOpen(false)}>System</a>
           <a href="/#warum" onClick={() => setOpen(false)}>Kontrolle</a>
           <a href="/contact/" onClick={() => setOpen(false)}>Kontakt</a>

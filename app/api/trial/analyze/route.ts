@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createNeokensCompletion } from '@/lib/neokens';
-import { consumeRateLimit, getRateLimitKey } from '@/lib/rate-limit';
+import { consumeRateLimit, getClientIdentity } from '@/lib/rate-limit';
 import { createTrial } from '@/lib/trial-store';
+import { checkTrialOrigin, verifyTrialChallenge } from '@/lib/trial-security';
 import { analyzeWebsite } from '@/lib/website-analyzer';
 
 export const runtime = 'nodejs';
@@ -37,7 +38,14 @@ function shortText(value: unknown, fallback: string, maximum: number) {
 }
 
 export async function POST(request: NextRequest) {
-  const rate = consumeRateLimit(getRateLimitKey(request, 'trial-analysis'), 3, 60 * 60_000);
+  if (!checkTrialOrigin(request)) {
+    return NextResponse.json({ error: 'Diese Anfrage wurde abgewiesen.' }, { status: 403 });
+  }
+
+  const rate = await consumeRateLimit(request, 'trial-analysis', 3, 60 * 60_000);
+  if (rate.unavailable) {
+    return NextResponse.json({ error: 'Der Sicherheitsschutz ist gerade nicht verfügbar. Versuch es später erneut.' }, { status: 503 });
+  }
   if (!rate.allowed) {
     return NextResponse.json(
       { error: 'Du hast bereits mehrere Websites analysiert. Versuch es bitte später erneut.' },
@@ -51,15 +59,32 @@ export async function POST(request: NextRequest) {
   }
 
   let website = '';
+  let turnstileToken: unknown;
   try {
     const rawBody = await request.text();
     if (Buffer.byteLength(rawBody, 'utf8') > MAX_REQUEST_BYTES) {
       return NextResponse.json({ error: 'Die Anfrage ist zu groß.' }, { status: 413 });
     }
-    const body = JSON.parse(rawBody) as { website?: unknown };
+    const body = JSON.parse(rawBody) as { website?: unknown; turnstileToken?: unknown };
     website = typeof body.website === 'string' ? body.website : '';
+    turnstileToken = body.turnstileToken;
   } catch {
     return NextResponse.json({ error: 'Ungültige Anfrage.' }, { status: 400 });
+  }
+
+  const challenge = await verifyTrialChallenge(turnstileToken);
+  if (challenge.unavailable) {
+    return NextResponse.json({ error: 'Die Sicherheitsprüfung ist gerade nicht verfügbar.' }, { status: 503 });
+  }
+  if (!challenge.valid) {
+    return NextResponse.json({ error: 'Bitte bestätige die Sicherheitsprüfung und versuche es erneut.' }, { status: 403 });
+  }
+
+  let ownerIdentity: string;
+  try {
+    ownerIdentity = getClientIdentity(request);
+  } catch {
+    return NextResponse.json({ error: 'Der Sicherheitsschutz ist nicht korrekt konfiguriert.' }, { status: 503 });
   }
 
   try {
@@ -105,6 +130,7 @@ export async function POST(request: NextRequest) {
       240,
     );
     const trial = createTrial({
+      ownerIdentity,
       sourceUrl: analysis.sourceUrl,
       hostname: analysis.hostname,
       brandName,

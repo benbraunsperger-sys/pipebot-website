@@ -14,6 +14,7 @@ export function SiteFooter() {
           <div>
             <strong>PipeBot</strong>
             <Link href="/testen/">Gratis testen</Link>
+            <Link href="/branchen/">Anwendungsbeispiele nach Branche</Link>
             <a href="/#system">System</a>
             <a href="/#warum">Kontrolle</a>
             <Link href="/contact/">Kontakt</Link>

@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useRef, useState, type CSSProperties } from 'reac
 import { AnimatePresence, motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { TurnstileWidget } from './turnstile-widget';
 
 type TrialProfile = {
   trialId: string;
@@ -55,7 +56,12 @@ export function TrialExperience() {
   const [previewMode, setPreviewMode] = useState<'desktop' | 'mobile'>('desktop');
   const [error, setError] = useState('');
   const [activeModel, setActiveModel] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileReset, setTurnstileReset] = useState(0);
+  const [turnstileError, setTurnstileError] = useState('');
   const chatLogRef = useRef<HTMLDivElement>(null);
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
+  const production = process.env.NODE_ENV === 'production';
 
   useEffect(() => {
     if (!analyzing) return;
@@ -73,6 +79,14 @@ export function TrialExperience() {
   async function analyze(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!website.trim() || analyzing) return;
+    if (production && !turnstileSiteKey) {
+      setError('Die Sicherheitsprüfung ist nicht konfiguriert. Bitte versuche es später erneut.');
+      return;
+    }
+    if (turnstileSiteKey && !turnstileToken) {
+      setError('Bitte bestätige zuerst die Sicherheitsprüfung.');
+      return;
+    }
 
     setAnalyzing(true);
     setError('');
@@ -84,7 +98,7 @@ export function TrialExperience() {
       const response = await fetch('/api/trial/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ website }),
+        body: JSON.stringify({ website, turnstileToken: turnstileToken || undefined }),
       });
       const data = await response.json() as TrialProfile & { error?: string };
       if (!response.ok || !data.trialId) throw new Error(data.error || 'Die Website konnte nicht analysiert werden.');
@@ -96,6 +110,8 @@ export function TrialExperience() {
       setError(caughtError instanceof Error ? caughtError.message : 'Die Website konnte nicht analysiert werden.');
     } finally {
       setAnalyzing(false);
+      setTurnstileToken('');
+      setTurnstileReset((current) => current + 1);
     }
   }
 
@@ -203,10 +219,26 @@ export function TrialExperience() {
                 disabled={analyzing}
                 required
               />
-              <button type="submit" disabled={analyzing || !website.trim()}>
+              <button type="submit" disabled={analyzing || !website.trim() || (production && !turnstileSiteKey) || Boolean(turnstileSiteKey && !turnstileToken)}>
                 {analyzing ? 'Wird aufgebaut …' : 'Testversion bauen'}
               </button>
             </div>
+            {turnstileSiteKey ? (
+              <TurnstileWidget
+                key={turnstileReset}
+                siteKey={turnstileSiteKey}
+                onToken={(token) => { setTurnstileToken(token); setTurnstileError(''); }}
+                onUnavailable={() => {
+                  setTurnstileToken('');
+                  setTurnstileError('Die Sicherheitsprüfung konnte nicht geladen werden. Bitte lade die Seite neu.');
+                }}
+              />
+            ) : production ? (
+              <p className="trial-security-error" role="alert">Die Sicherheitsprüfung ist nicht verfügbar.</p>
+            ) : (
+              <p className="trial-security-note">Sicherheitsprüfung wird in der lokalen Entwicklung übersprungen.</p>
+            )}
+            {turnstileError && <p className="trial-security-error" role="alert">{turnstileError}</p>}
             <p>Nur öffentlich erreichbare Websites. Keine internen Systeme oder vertraulichen Adressen eingeben.</p>
           </form>
 
