@@ -123,12 +123,22 @@ export async function consumeRateLimit(
   limit: number,
   windowMs: number,
   subject = '',
+  options: { localFallback?: boolean } = {},
 ): Promise<RateLimitResult> {
   try {
     const identity = getClientIdentity(request);
     const key = `pipebot:ratelimit:${scope}:${createHash('sha256').update(`${identity}:${subject}`).digest('hex')}`;
 
     if (process.env.NODE_ENV !== 'production'
+      && !process.env.UPSTASH_REDIS_REST_URL
+      && !process.env.UPSTASH_REDIS_REST_TOKEN) {
+      return consumeLocalRateLimit(key, limit, windowMs);
+    }
+
+    // Low-risk endpoints (plain chat) may degrade to a per-instance limit while shared
+    // storage is not configured, instead of blocking every visitor. Configured-but-failing
+    // Upstash still fails closed below.
+    if (options.localFallback
       && !process.env.UPSTASH_REDIS_REST_URL
       && !process.env.UPSTASH_REDIS_REST_TOKEN) {
       return consumeLocalRateLimit(key, limit, windowMs);
