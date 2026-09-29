@@ -12,6 +12,9 @@ type ChatMessage = { role: ChatRole; content: string };
 const MAX_HISTORY = 12;
 const MAX_MESSAGE_LENGTH = 1_500;
 const MAX_REQUEST_BYTES = 32_000;
+// Order = fallback chain. The proxy repeatedly leaves whole model families hanging
+// (claude-* on 2026-09-29), so fast models go first and each attempt gets a short timeout.
+const CHAT_MODELS = ['gpt-5.6-luna', 'gemini-3.8-flash', 'gpt-5.6-sol', 'claude-sonnet-5'] as const;
 
 function isChatMessage(value: unknown): value is ChatMessage {
   if (!value || typeof value !== 'object') return false;
@@ -68,7 +71,7 @@ export async function POST(request: NextRequest) {
     const completion = await createNeokensCompletion([
       { role: 'system', content: PIPEBOT_SYSTEM_PROMPT },
       ...messages,
-    ], { maxTokens: 750, timeoutMs: 30_000 });
+    ], { models: CHAT_MODELS, maxTokens: 750, timeoutMs: 8_000 });
     return NextResponse.json({ message: completion.content, model: completion.model });
   } catch {
     return NextResponse.json({ error: 'PipeBot ist gerade nicht erreichbar. Versuch es bitte erneut.' }, { status: 502 });
